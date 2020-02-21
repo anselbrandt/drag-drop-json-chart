@@ -24,3 +24,16 @@
   outline: none;
   transition: border 0.25s ease-in-out;
 }
+
+.dropIcon {
+  width: 50px;
+  height: 43px;
+  stroke: lightslategrey;
+  fill: lightslategrey;
+}
+
+.dropIconActive {
+  composes: dropIcon;
+  stroke: tomato;
+  fill: tomato;
+}
