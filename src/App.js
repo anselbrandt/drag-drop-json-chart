@@ -41,7 +41,10 @@ function App() {
       </div>
       <div className={styles.tree}>
         {data ? `${filename}: ${data.length} values` : null}
-        <Tree element={data ? data[3] : null} data={data ? data : null} />
+        <Tree
+          element={data ? data[data.length - 1] : null}
+          data={data ? data : null}
+        />
       </div>
       <Dropzone onDrop={onDrop} />
       <div>
