@@ -29,7 +29,10 @@ function App() {
     });
   }, []);
 
-  const handleUseSampleData = () => setData(sampledata);
+  const handleUseSampleData = () => {
+    setData(sampledata);
+    setFilename('sample data');
+  };
 
   return (
     <div className={styles.app}>
