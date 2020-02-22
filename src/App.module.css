@@ -25,6 +25,10 @@
   transition: border 0.25s ease-in-out;
 }
 
+.dropContainer:hover {
+  cursor: pointer;
+}
+
 .dropContainerActive {
   composes: dropContainer;
   color: tomato;
