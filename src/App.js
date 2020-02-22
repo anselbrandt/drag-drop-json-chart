@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import styles from './App.module.css';
 import Dropzone from './Dropzone';
 import Tree from './Tree';
+import sampledata from './sampledata.json';
 
 function App() {
   const [data, setData] = useState();
@@ -28,6 +29,8 @@ function App() {
     });
   }, []);
 
+  const handleUseSampleData = () => setData(sampledata);
+
   return (
     <div className={styles.app}>
       <div>
@@ -35,9 +38,14 @@ function App() {
       </div>
       <div className={styles.tree}>
         {data ? `${filename}: ${data.length} values` : null}
-        <Tree data={data ? data[1] : null} />
+        <Tree element={data ? data[3] : null} data={data ? data : null} />
       </div>
       <Dropzone onDrop={onDrop} />
+      <div>
+        <button onClick={handleUseSampleData} className={styles.button}>
+          Use sample data
+        </button>
+      </div>
     </div>
   );
 }

@@ -104,3 +104,25 @@ li:last-child:before {
   top: 1em; /* (line-height/2) */
   bottom: 0;
 }
+
+.button {
+  padding: 1em;
+  margin: 1em;
+  border-width: 2px;
+  border-radius: 8px;
+  border-color: slategray;
+  border-style: solid;
+  background-color: #4f5666;
+  color: lightsteelblue;
+  outline: none;
+}
+
+.button:hover {
+  border-color: tomato;
+}
+
+.button:active {
+  border-color: tomato;
+  background-color: tomato;
+  color: white;
+}

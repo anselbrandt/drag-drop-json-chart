@@ -1,18 +1,19 @@
 import React from 'react';
 
 export default function Tree(props) {
-  const { data } = props;
+  const { element, data } = props;
+
   return (
     <React.Fragment>
-      {data ? (
+      {element ? (
         <ul>
-          {Object.keys(data).map((key, index) => (
+          {Object.keys(element).map((key, index) => (
             <li key={index}>
               {key}:{' '}
-              {typeof Object.values(data)[index] === 'object' ? (
-                <Tree data={Object.values(data)[index]} />
+              {typeof Object.values(element)[index] === 'object' ? (
+                <Tree element={Object.values(element)[index]} />
               ) : (
-                `${Object.values(data)[index]}`
+                `${Object.values(element)[index]}`
               )}
             </li>
           ))}
