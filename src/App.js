@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import styles from './App.module.css';
 import Dropzone from './Dropzone';
+import Tree from './Tree';
 
 function App() {
   const [data, setData] = useState();
@@ -32,17 +33,9 @@ function App() {
       <div>
         {fileError ? `${filename} does not appear to contain valid JSON` : null}
       </div>
-      <div>{data ? `${filename}: ${data.length} values` : null}</div>
-      <div>
-        <ul>
-          {data
-            ? Object.keys(data[0]).map((key, index) => (
-                <li key={index}>
-                  {key} {Object.keys(key) ? 'has more' : null}
-                </li>
-              ))
-            : null}
-        </ul>
+      <div className={styles.tree}>
+        {data ? `${filename}: ${data.length} values` : null}
+        <Tree data={data} />
       </div>
       <Dropzone onDrop={onDrop} />
     </div>

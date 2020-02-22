@@ -10,6 +10,11 @@
   color: white;
 }
 
+.tree {
+  text-align: left;
+  padding: 1em;
+}
+
 .dropContainer {
   display: flex;
   flex-direction: column;
