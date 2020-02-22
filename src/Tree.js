@@ -3,14 +3,21 @@ import React from 'react';
 export default function Tree(props) {
   const { data } = props;
   return (
-    <ul>
-      {data
-        ? Object.keys(data[0]).map((key, index) => (
+    <React.Fragment>
+      {data ? (
+        <ul>
+          {Object.keys(data).map((key, index) => (
             <li key={index}>
-              {key} {Object.keys(key) ? 'has more' : null}
+              {key}:{' '}
+              {typeof Object.values(data)[index] === 'object' ? (
+                <Tree data={Object.values(data)[index]} />
+              ) : (
+                `${Object.values(data)[index]}`
+              )}
             </li>
-          ))
-        : null}
-    </ul>
+          ))}
+        </ul>
+      ) : null}
+    </React.Fragment>
   );
 }
