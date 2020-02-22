@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 2em;
   color: white;
 }
 
@@ -22,16 +22,17 @@
   background-color: #4f5666;
   color: lightsteelblue;
   outline: none;
-  transition: border 0.25s ease-in-out;
 }
 
 .dropContainer:hover {
   cursor: pointer;
+  border-color: tomato;
 }
 
 .dropContainerActive {
   composes: dropContainer;
   color: tomato;
+  border-color: tomato;
 }
 
 .dropText {
@@ -39,8 +40,8 @@
 }
 
 .dropIcon {
-  width: 50px;
-  height: 43px;
+  width: 1em;
+  height: 1em;
   stroke: lightslategrey;
   fill: lightslategrey;
   padding: 1em;
@@ -50,4 +51,50 @@
   composes: dropIcon;
   stroke: tomato;
   fill: tomato;
+}
+
+ul {
+  margin: 0 0 0 1em; /* indentation */
+  padding: 0;
+  list-style: none;
+  color: white;
+  position: relative;
+  text-align: left;
+}
+
+ul:before {
+  content: '';
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+}
+
+li {
+  margin: 0;
+  padding: 0 1.5em; /* indentation + .5em */
+  line-height: 1.5em; /* default list item's `line-height` */
+  position: relative;
+}
+
+li:before {
+  content: '';
+  display: block;
+  width: 1em; /* same with indentation */
+  height: 0;
+  border-top: 1px solid;
+  margin-top: -1px; /* border top width */
+  position: absolute;
+  top: 1em; /* (line-height/2) */
+  left: 0;
+}
+
+li:last-child:before {
+  background: #282c34; /* same with body background */
+  height: auto;
+  top: 1em; /* (line-height/2) */
+  bottom: 0;
 }

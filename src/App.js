@@ -32,14 +32,17 @@ function App() {
       <div>
         {fileError ? `${filename} does not appear to contain valid JSON` : null}
       </div>
-      <div>{filename ? `Filename: ${filename}` : null}</div>
-      <div>{data ? `Data points: ${data.length}` : null}</div>
+      <div>{data ? `${filename}: ${data.length} values` : null}</div>
       <div>
-        {data
-          ? Object.keys(data[0]).map((key, index) => (
-              <div key={index}>{key}</div>
-            ))
-          : null}
+        <ul>
+          {data
+            ? Object.keys(data[0]).map((key, index) => (
+                <li key={index}>
+                  {key} {Object.keys(key) ? 'has more' : null}
+                </li>
+              ))
+            : null}
+        </ul>
       </div>
       <Dropzone onDrop={onDrop} />
     </div>
