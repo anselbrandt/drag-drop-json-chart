@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './App.module.css';
 
 export default function Tree(props) {
-  const { element, data } = props;
+  const { element, data, parent, handleOnClick } = props;
 
   return (
     <React.Fragment>
@@ -11,9 +12,27 @@ export default function Tree(props) {
             <li key={index}>
               {key}:{' '}
               {typeof Object.values(element)[index] === 'object' ? (
-                <Tree element={Object.values(element)[index]} />
+                <Tree
+                  element={Object.values(element)[index]}
+                  parent={key}
+                  handleOnClick={handleOnClick}
+                />
+              ) : parent ? (
+                <button
+                  onClick={handleOnClick}
+                  value={`element.${parent}.${key}`}
+                  className={styles.value}
+                >
+                  {Object.values(element)[index]}
+                </button>
               ) : (
-                `${Object.values(element)[index]}`
+                <button
+                  onClick={handleOnClick}
+                  value={`element.${key}`}
+                  className={styles.value}
+                >
+                  {Object.values(element)[index]}
+                </button>
               )}
             </li>
           ))}
@@ -22,3 +41,5 @@ export default function Tree(props) {
     </React.Fragment>
   );
 }
+
+// Object.values(element)[index]

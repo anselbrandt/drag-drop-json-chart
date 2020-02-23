@@ -34,6 +34,10 @@ function App() {
     setFilename('sample data');
   };
 
+  const handleOnClick = event => {
+    console.log(event.target.value);
+  };
+
   return (
     <div className={styles.app}>
       <div>
@@ -44,6 +48,7 @@ function App() {
         <Tree
           element={data ? data[data.length - 1] : null}
           data={data ? data : null}
+          handleOnClick={handleOnClick}
         />
       </div>
       <Dropzone onDrop={onDrop} />

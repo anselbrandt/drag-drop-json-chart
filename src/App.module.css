@@ -126,3 +126,26 @@ li:last-child:before {
   background-color: tomato;
   color: white;
 }
+
+.value {
+  font-size: 0.75em;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282c34;
+  background-color: #282c34;
+  color: white;
+  outline: none;
+}
+
+.value:hover {
+  border-color: tomato;
+  cursor: pointer;
+}
+
+.value:active {
+  border-color: tomato;
+  background-color: tomato;
+  color: white;
+}
