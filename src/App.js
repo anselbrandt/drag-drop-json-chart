@@ -1,13 +1,29 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import styles from './App.module.css';
 import Dropzone from './Dropzone';
 import Tree from './Tree';
-import sampledata from './sampledata.json';
+import sample from './sample.json';
+import geo from './geo.json';
 
 function App() {
   const [data, setData] = useState();
   const [filename, setFilename] = useState();
   const [fileError, setFileError] = useState(false);
+  const [selected, setSelected] = useState();
+  const [numberDataPoints, setNumberDataPoints] = useState();
+
+  useEffect(() => {
+    if (data) {
+      if (Array.isArray(data)) {
+        setNumberDataPoints(data.length);
+      } else {
+        const values = Object.values(data);
+        values.forEach(value => {
+          if (Array.isArray(value)) setNumberDataPoints(value.length);
+        });
+      }
+    }
+  }, [data]);
 
   const onDrop = useCallback(acceptedFiles => {
     acceptedFiles.forEach(file => {
@@ -29,33 +45,42 @@ function App() {
     });
   }, []);
 
-  const handleUseSampleData = () => {
-    setData(sampledata);
-    setFilename('sample data');
+  const handleUseSampleJSON = () => {
+    setData(sample);
+    setFilename('sample JSON');
+  };
+
+  const handleUseGeoJSON = () => {
+    setData(geo);
+    setFilename('GeoJSON');
   };
 
   const handleOnClick = event => {
-    console.log(event.target.value);
+    setSelected(event.target.value);
   };
 
   return (
     <div className={styles.app}>
       <div>
+        {selected ? selected : null}
         {fileError ? `${filename} does not appear to contain valid JSON` : null}
-      </div>
-      <div className={styles.tree}>
-        {data ? `${filename}: ${data.length} values` : null}
-        <Tree
-          element={data ? data[data.length - 1] : null}
-          data={data ? data : null}
-          handleOnClick={handleOnClick}
-        />
       </div>
       <Dropzone onDrop={onDrop} />
       <div>
-        <button onClick={handleUseSampleData} className={styles.button}>
-          Use sample data
+        <button onClick={handleUseSampleJSON} className={styles.button}>
+          Use sample JSON
         </button>
+        <button onClick={handleUseGeoJSON} className={styles.button}>
+          Use sample GeoJSON
+        </button>
+      </div>
+      <div className={styles.tree}>
+        {data ? `${filename}: ${numberDataPoints} data points` : null}
+        <Tree
+          element={data ? data : null}
+          data={data ? data : null}
+          handleOnClick={handleOnClick}
+        />
       </div>
     </div>
   );

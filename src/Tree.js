@@ -20,7 +20,7 @@ export default function Tree(props) {
               ) : parent ? (
                 <button
                   onClick={handleOnClick}
-                  value={`element.${parent}.${key}`}
+                  value={`${parent}.${key}`}
                   className={styles.value}
                 >
                   {Object.values(element)[index]}
@@ -28,7 +28,7 @@ export default function Tree(props) {
               ) : (
                 <button
                   onClick={handleOnClick}
-                  value={`element.${key}`}
+                  value={key}
                   className={styles.value}
                 >
                   {Object.values(element)[index]}
