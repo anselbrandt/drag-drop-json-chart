@@ -7,6 +7,7 @@ import geo from './geo.json';
 
 function App() {
   const [data, setData] = useState();
+  const [values, setValues] = useState();
   const [filename, setFilename] = useState();
   const [fileError, setFileError] = useState(false);
   const [selected, setSelected] = useState();

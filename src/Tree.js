@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './App.module.css';
 
 export default function Tree(props) {
-  const { data, parent, handleOnClick } = props;
+  const { data, parent = [], handleOnClick } = props;
 
   return (
     <React.Fragment>
@@ -14,13 +14,13 @@ export default function Tree(props) {
               {typeof Object.values(data)[index] === 'object' ? (
                 <Tree
                   data={Object.values(data)[index]}
-                  parent={parent ? `${parent}.${key}` : key}
+                  parent={parent.length > 0 ? [...parent, key] : [key]}
                   handleOnClick={handleOnClick}
                 />
-              ) : parent ? (
+              ) : parent.length > 0 ? (
                 <button
                   onClick={handleOnClick}
-                  value={`${parent}.${key}`}
+                  value={[...parent, key]}
                   className={styles.value}
                 >
                   {Object.values(data)[index]}
@@ -28,7 +28,7 @@ export default function Tree(props) {
               ) : (
                 <button
                   onClick={handleOnClick}
-                  value={key}
+                  value={[key]}
                   className={styles.value}
                 >
                   {Object.values(data)[index]}
