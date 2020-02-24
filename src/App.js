@@ -48,11 +48,13 @@ function App() {
   const handleUseSampleJSON = () => {
     setData(sample);
     setFilename('sample JSON');
+    setNumberDataPoints();
   };
 
   const handleUseGeoJSON = () => {
     setData(geo);
     setFilename('GeoJSON');
+    setNumberDataPoints();
   };
 
   const handleOnClick = event => {
@@ -75,12 +77,8 @@ function App() {
         </button>
       </div>
       <div className={styles.tree}>
-        {data ? `${filename}: ${numberDataPoints} data points` : null}
-        <Tree
-          element={data ? data : null}
-          data={data ? data : null}
-          handleOnClick={handleOnClick}
-        />
+        {data ? `${filename}: ${numberDataPoints} records` : null}
+        <Tree data={data ? data : null} handleOnClick={handleOnClick} />
       </div>
     </div>
   );

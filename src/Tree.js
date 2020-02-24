@@ -2,19 +2,19 @@ import React from 'react';
 import styles from './App.module.css';
 
 export default function Tree(props) {
-  const { element, data, parent, handleOnClick } = props;
+  const { data, parent, handleOnClick } = props;
 
   return (
     <React.Fragment>
-      {element ? (
+      {data ? (
         <ul>
-          {Object.keys(element).map((key, index) => (
+          {Object.keys(data).map((key, index) => (
             <li key={index}>
               {key}:{' '}
-              {typeof Object.values(element)[index] === 'object' ? (
+              {typeof Object.values(data)[index] === 'object' ? (
                 <Tree
-                  element={Object.values(element)[index]}
-                  parent={key}
+                  data={Object.values(data)[index]}
+                  parent={parent ? `${parent}.${key}` : key}
                   handleOnClick={handleOnClick}
                 />
               ) : parent ? (
@@ -23,7 +23,7 @@ export default function Tree(props) {
                   value={`${parent}.${key}`}
                   className={styles.value}
                 >
-                  {Object.values(element)[index]}
+                  {Object.values(data)[index]}
                 </button>
               ) : (
                 <button
@@ -31,7 +31,7 @@ export default function Tree(props) {
                   value={key}
                   className={styles.value}
                 >
-                  {Object.values(element)[index]}
+                  {Object.values(data)[index]}
                 </button>
               )}
             </li>
@@ -42,4 +42,4 @@ export default function Tree(props) {
   );
 }
 
-// Object.values(element)[index]
+// Object.values(data)[index]
